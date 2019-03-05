@@ -6,34 +6,33 @@ resources:
   - name: notification_slack
     type: notification
     integration: slack
-    versionTemplate:
+    pointer:
       recipients:
+        - "#rc-public"
         - "#rc-private"
-       # - "#rc-public"
         
   - name: notification_irc
     type: notification
-    integration: irc
-    versionTemplate:
+    pointer:
+      method: irc
       recipients:
-        - "#testrc"
-        - "#rc-public"
+        - "irc.freenode.net#testrc"
         
   - name: notification_hipchat
     type: notification
     integration: hipchat
-    versionTemplate:
+    pointer:
       recipients:
-        - "#testrc"
         - "#rc-public"
-       # - "#rc-private"
+        - "#rc-private"
+      #  - "@botnot"
    
   - name: notification_email
     type: notification
-    integration: email
-    versionTemplate:
+    pointer:
+      method: email
       recipients:
-        - "varsha@shippable"
+        - "varsha@shippable.com"
 
 jobs:
   - name: w16aspnetcore-runsh
