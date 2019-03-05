@@ -2,6 +2,38 @@ resources:
   - name: cli-configdocker
     type: cliConfig
     integration: "ship-docker"
+    
+  - name: notification_slack
+    type: notification
+    integration: slack
+    versionTemplate:
+      recipients:
+        - "#rc-private"
+       # - "#rc-public"
+        
+  - name: notification_irc
+    type: notification
+    integration: irc
+    versionTemplate:
+      recipients:
+        - "#testrc"
+        - "#rc-public"
+        
+  - name: notification_hipchat
+    type: notification
+    integration: hipchat
+    versionTemplate:
+      recipients:
+        - "#testrc"
+        - "#rc-public"
+       # - "#rc-private"
+   
+  - name: notification_email
+    type: notification
+    integration: email
+    versionTemplate:
+      recipients:
+        - "varsha@shippable"
 
 jobs:
   - name: w16aspnetcore-runsh
@@ -36,6 +68,10 @@ jobs:
             - echo CLICONFIGDOCKER_INTEGRATION_USERNAME=$CLICONFIGDOCKER_INTEGRATION_USERNAME
             - echo CLICONFIGDOCKER_INTEGRATION_PASSWORD=${#CLICONFIGDOCKER_INTEGRATION_PASSWORD}
             - echo CLICONFIGDOCKER_INTEGRATION_EMAIL=$CLICONFIGDOCKER_INTEGRATION_EMAIL
+            - shipctl notify notification_slack --recipient="@shiptest-rc-ow"
+            - shipctl notify notification_irc --recipient="#testrc"
+            - shipctl notify notification_email --recipient="@shiptest-rc-ow@gmail.com"
+            - shipctl notify notification_hipchat --recipient="@shiptest-rc-ow"
             
   - name: w16dotnetcore-runsh
     type: runSh
