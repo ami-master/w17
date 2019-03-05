@@ -67,9 +67,11 @@ jobs:
             - echo CLICONFIGDOCKER_INTEGRATION_USERNAME=$CLICONFIGDOCKER_INTEGRATION_USERNAME
             - echo CLICONFIGDOCKER_INTEGRATION_PASSWORD=${#CLICONFIGDOCKER_INTEGRATION_PASSWORD}
             - echo CLICONFIGDOCKER_INTEGRATION_EMAIL=$CLICONFIGDOCKER_INTEGRATION_EMAIL
-            - shipctl notify notification_irc -recipient "#testrc"
+            
             - shipctl notify notification_email -recipient "shiptest-rc-ow@gmail.com"
-            - shipctl notify notification_slack -recipient "shiptest-rc-ow"            
+            
+            - shipctl notify notification_slack -recipient "shiptest-rc-ow" 
+            - shipctl notify notification_irc -recipient "#testrc"
             - shipctl notify notification_hipchat -recipient "shiptest-rc-ow"
             
   - name: w16dotnetcore-runsh
