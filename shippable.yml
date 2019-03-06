@@ -18,22 +18,6 @@ resources:
       recipients:
         - "irc.freenode.net#testrc"
         
-  - name: notification_hipchat
-    type: notification
-    integration: hipchat
-    pointer:
-      recipients:
-        - "#rc-public"
-        - "#rc-private"
-      #  - "@botnot"
-   
-  - name: notification_email
-    type: notification
-    pointer:
-      method: email
-      recipients:
-        - "varsha@shippable.com"
-
 jobs:
   - name: w16aspnetcore-runsh
     type: runSh
@@ -66,11 +50,9 @@ jobs:
             - echo CLICONFIGDOCKER_INTEGRATION_URL=$CLICONFIGDOCKER_INTEGRATION_URL
             - echo CLICONFIGDOCKER_INTEGRATION_USERNAME=$CLICONFIGDOCKER_INTEGRATION_USERNAME
             - echo CLICONFIGDOCKER_INTEGRATION_PASSWORD=${#CLICONFIGDOCKER_INTEGRATION_PASSWORD}
-            - echo CLICONFIGDOCKER_INTEGRATION_EMAIL=$CLICONFIGDOCKER_INTEGRATION_EMAIL            
-            - shipctl notify notification_email -recipient "shiptest-rc-ow@gmail.com"            
-            - shipctl notify notification_slack -recipient "shiptest-rc-ow" 
+            - echo CLICONFIGDOCKER_INTEGRATION_EMAIL=$CLICONFIGDOCKER_INTEGRATION_EMAIL          
+            - shipctl notify notification_slack -recipient "@shiptest-rc-ow"
             - shipctl notify notification_irc -recipient "testrc"
-            - shipctl notify notification_hipchat -recipient "shiptest-rc-ow"
             
   - name: w16dotnetcore-runsh
     type: runSh
