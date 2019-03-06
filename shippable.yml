@@ -16,7 +16,8 @@ resources:
     pointer:
       method: irc
       recipients:
-        - "irc.freenode.net#testrc"
+        - "chat.freenode.net#testingrc"
+        - "chat.freenode.net#rcapp"
         
 jobs:
   - name: w16aspnetcore-runsh
